@@ -13,10 +13,12 @@
   <body>
 
   <h1> Email Validation</h1>
-  <form action="validate" method="post">
+  <h3 style="color: #ff0000;">${message}</h3>
+  <form action="/validate" method="post">
     <input type="text" name="email"><br>
     <input type="submit" value="Validate">
   </form>
-
+<%--  <h1>${message}</h1>--%>
   </body>
+
 </html>

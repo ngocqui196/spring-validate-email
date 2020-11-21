@@ -16,27 +16,28 @@ public class EmailController {
 
     private static final String EMAIL_REGEX = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
 
-    public void EmailController() {
+    public EmailController() {
         pattern = Pattern.compile(EMAIL_REGEX);
     }
 
-    @GetMapping
+    @GetMapping("/")
     String getIndex() {
         return "index";
     }
 
     @PostMapping("/validate")
-    public String validateEmail(@RequestParam("email") String email, Model model) {
+    String validateEmail(@RequestParam("email") String email, Model model) {
         boolean isvalid = this.validate(email);
         if (!isvalid) {
-            model.addAttribute("message","Email is invalid");
-            return "error";
+            model.addAttribute("message", "Email is invalid");
+            return "index";
         }
-            model.addAttribute("email", email);
-            return "success";
+
+        model.addAttribute("email", email);
+        return "success";
     }
 
-    private boolean validate(String regex){
+    private boolean validate(String regex) {
         matcher = pattern.matcher(regex);
         return matcher.matches();
     }
